@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin NOMAD</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <div class="sidebar-brand">
+                    <img src="../images/logo.png" alt="NOMAD" class="admin-sidebar-logo">
+                    <h2>NOMAD</h2>
+                </div>
+                <a href="../index.html" class="sidebar-retour">Retour au site</a>
+            </div>
+
+            <nav class="admin-nav">
+                <a href="#dashboard" class="active">
+                    <span class="admin-nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#sorties">
+                    <span class="admin-nav-icon">🎯</span>
+                    <span>Sorties</span>
+                </a>
+                <a href="#gallery">
+                    <span class="admin-nav-icon">📷</span>
+                    <span>Galerie</span>
+                </a>
+                <a href="#membres">
+                    <span class="admin-nav-icon">👥</span>
+                    <span>Membres</span>
+                </a>
+                <a href="#actualites">
+                    <span class="admin-nav-icon">📰</span>
+                    <span>Actualités</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Panel d'Administration</h1>
+                <div class="admin-user">
+                    <span id="admin-user-name" class="admin-user-name">Admin</span>
+                    <button id="logout-btn" class="admin-logout">Déconnexion</button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="admin-section">
+                    <h2 class="admin-section-title">Tableau de bord</h2>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-box">
+                            <span class="stat-icon">🎯</span>
+                            <div class="stat-details">
+                                <h3 id="stat-sorties">0</h3>
+                                <p>Sorties</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">📷</span>
+                            <div class="stat-details">
+                                <h3 id="stat-photos">0</h3>
+                                <p>Photos</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">👥</span>
+                            <div class="stat-details">
+                                <h3 id="stat-membres">0</h3>
+                                <p>Membres</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">📰</span>
+                            <div class="stat-details">
+                                <h3 id="stat-actualites">0</h3>
+                                <p>Actualités</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <p><strong>Bienvenue sur le panel d'administration NOMAD !</strong></p>
+                        <p>Utilisez le menu de gauche pour gérer le contenu du site.</p>
+                    </div>
+                </div>
+
+                <!-- Sorties Section -->
+                <div id="sorties-section" class="admin-section" style="display: none;">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Gestion des Sorties</h2>
+                        <button id="add-sortie-btn" class="btn-add">+ Ajouter une sortie</button>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Date</th>
+                                <th>Lieu</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sorties-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Gallery Section -->
+                <div id="gallery-section" class="admin-section" style="display: none;">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Gestion de la Galerie</h2>
+                        <button id="add-photo-btn" class="btn-add">+ Ajouter une photo</button>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Légende</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gallery-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Membres Section -->
+                <div id="membres-section" class="admin-section" style="display: none;">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Gestion des Membres</h2>
+                        <button id="add-membre-btn" class="btn-add">+ Ajouter un membre</button>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Nom</th>
+                                <th>Rôle</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membres-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Actualites Section -->
+                <div id="actualites-section" class="admin-section" style="display: none;">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Gestion des Actualités</h2>
+                        <button id="add-actualite-btn" class="btn-add">+ Ajouter une actualité</button>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="actualites-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Sortie Modal -->
+    <div id="sortie-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="sortie-modal-title" class="modal-title">Ajouter une sortie</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="sortie-form" class="admin-form" onsubmit="event.preventDefault(); saveSortie();">
+                <input type="hidden" id="sortie-id">
+                
+                <div class="form-group">
+                    <label for="sortie-title">Titre *</label>
+                    <input type="text" id="sortie-title" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sortie-date">Date *</label>
+                        <input type="text" id="sortie-date" required placeholder="15 Mars 2026">
+                    </div>
+                    <div class="form-group">
+                        <label for="sortie-type">Type *</label>
+                        <select id="sortie-type" required>
+                            <option value="upcoming">À venir</option>
+                            <option value="past">Passée</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sortie-location">Lieu *</label>
+                    <input type="text" id="sortie-location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sortie-description">Description *</label>
+                    <textarea id="sortie-description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sortie-image">URL de l'image</label>
+                    <input type="url" id="sortie-image" placeholder="https://...">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal('sortie-modal')">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photo-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter une photo</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="photo-form" class="admin-form" onsubmit="event.preventDefault(); savePhoto();">
+                <div class="form-group">
+                    <label for="photo-url">URL de l'image *</label>
+                    <input type="url" id="photo-url" required placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="photo-caption">Légende</label>
+                    <input type="text" id="photo-caption" placeholder="Description de la photo">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal('photo-modal')">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Membre Modal -->
+    <div id="membre-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="membre-modal-title" class="modal-title">Ajouter un membre</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="membre-form" class="admin-form" onsubmit="event.preventDefault(); saveMembre();">
+                <input type="hidden" id="membre-id">
+                
+                <div class="form-group">
+                    <label for="membre-name">Nom complet *</label>
+                    <input type="text" id="membre-name" required placeholder="Alexandre 'Alpha' Martin">
+                </div>
+
+                <div class="form-group">
+                    <label for="membre-role">Rôle *</label>
+                    <input type="text" id="membre-role" required placeholder="Chef d'équipe">
+                </div>
+
+                <div class="form-group">
+                    <label for="membre-photo">URL de la photo *</label>
+                    <input type="url" id="membre-photo" required placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="membre-description">Description</label>
+                    <textarea id="membre-description" placeholder="Spécialités, expérience..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal('membre-modal')">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Actualite Modal -->
+    <div id="actualite-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="actualite-modal-title" class="modal-title">Ajouter une actualité</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="actualite-form" class="admin-form" onsubmit="event.preventDefault(); saveActualite();">
+                <input type="hidden" id="actualite-id">
+                
+                <div class="form-group">
+                    <label for="actualite-title">Titre *</label>
+                    <input type="text" id="actualite-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="actualite-date">Date *</label>
+                    <input type="text" id="actualite-date" required placeholder="1 Janvier 2026">
+                </div>
+
+                <div class="form-group">
+                    <label for="actualite-description">Description *</label>
+                    <textarea id="actualite-description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="actualite-image">URL de l'image</label>
+                    <input type="url" id="actualite-image" placeholder="https://...">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal('actualite-modal')">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
